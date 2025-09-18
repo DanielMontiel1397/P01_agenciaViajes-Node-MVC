@@ -32,7 +32,7 @@ app.use( (req,res,next) => {
 })
 
 //Definir la carpeta publica
-app.use(express.static('public'));
+app.use('/AgenciaViajes', express.static('public'));
 
 //Agregar Router
 app.use('/AgenciaViajes',router);
