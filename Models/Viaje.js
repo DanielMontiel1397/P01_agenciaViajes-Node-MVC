@@ -18,7 +18,11 @@ const Viaje = db.define('viajes',{
         type: DataTypes.DATE,
         allowNull: false
     },
-    imagen: {
+    imagen_horizontal: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    imagen_vertical: {
         type: DataTypes.STRING,
         allowNull: false
     },

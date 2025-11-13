@@ -1,7 +1,7 @@
 each viaje in resultado
     .col-md-6.col-lg-4.mb-4 
         .card 
-            img(src=`/img/destinos_${viaje.imagen}.jpg`, alt="" class="card-img-top")
+            img(src=`${viaje.imagen_horizontal}`, alt="" class="card-img-top")
             .card-body 
                 h2= viaje.titulo
                 p 
@@ -14,7 +14,8 @@ each viaje in resultado
                         path(d='M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0')
                         path(d='M18 16.5v1.5l.5 .5')
 
-                    | #{viaje.fecha_ida} - #{viaje.fecha_vuelta}
+                    | #{new Date(viaje.fecha_ida).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })} - #{new Date(viaje.fecha_vuelta).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}
+
                             
                 p 
                     svg.icon.icon-tabler.icon-tabler-users(xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewbox='0 0 24 24' stroke-width='1.5' stroke='#dc135f' fill='none' stroke-linecap='round' stroke-linejoin='round')
