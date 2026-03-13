@@ -1,18 +1,22 @@
 import express from 'express'
 import router from './routes/rutasView.js';
 import db from './config/db.js';
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 const app = express();
 
-const port = process.env.PORT || 4000;
-
 //Conexión a Base de datos
-try {
-    await db.authenticate();
-    db.sync();
-    console.log('La Base de Datos se conecto correctamente');
-} catch(error){
-    console.log('Hubo un error al conectar a la base de datos',error);
+//Conectamos a la base de datos solo si NO estamos en ambiente de testing
+if(process.env.NODE_ENV !== 'test'){
+    try {
+        await db.authenticate();
+        db.sync();
+        console.log('La Base de Datos se conecto correctamente');
+    } catch(error){
+        console.log('Hubo un error al conectar a la base de datos',error);
+    }
 }
 
 //Habilitar Pug
@@ -37,7 +41,18 @@ app.use(express.static('public'));
 //Agregar Router
 app.use('/',router);
 
-
-app.listen(port,()=>{
-    console.log(`El servidor esta funcionando en el puerto: ${port}`);
+//Middleware 404
+app.use((req,res) => {
+    res.status(404).render('404');
 })
+
+//Iniciamos servidor SOLO si NO estamos importando este archivo
+if(process.env.NODE_ENV !== 'test'){
+    const port = process.env.PORT || 4000;
+    app.listen(port,()=>{
+        console.log(`El servidor esta funcionando en el puerto: ${port}`);
+    })
+}
+
+//Exportamos la APP
+export default app;

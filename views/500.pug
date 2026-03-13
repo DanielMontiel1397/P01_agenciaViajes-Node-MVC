@@ -1,0 +1,11 @@
+extends ./layout/index
+block contenido
+    main.container.mt-5.text-center
+        h1.display-4(style="font-family: 'Staatliches', cursive; font-size: 4rem;") 500
+        h2.mt-3(style="font-weight: 700;") Error interno del servidor
+        p.mt-3(style="max-width: 600px; margin: 0 auto; font-size: 1.1rem;")
+            | Lo sentimos, algo salió mal en nuestro servidor.  
+            | Nuestro equipo ha sido notificado y estamos trabajando para solucionarlo.
+        .mt-5
+            a.btn.btn-primary.btn-lg(href="/")
+                | Volver al Inicio

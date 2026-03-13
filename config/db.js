@@ -1,7 +1,13 @@
 import { Sequelize } from "sequelize";
 import dotenv from 'dotenv'
 
-dotenv.config()
+//Cargamos las variables de entorno según el ambiente
+if(process.env.NODE_ENV === 'test'){
+    dotenv.config({path: '.env.test'});
+} else {
+    dotenv.config()
+}
+
 
 const db = new Sequelize(
     process.env.BD_NOMBRE,
@@ -19,7 +25,8 @@ const db = new Sequelize(
         acquire: 30000,
         idle: 10000
     },
-    operatorsAliases: false
+    operatorsAliases: false,
+    logging: false
 })
 
 export default db;

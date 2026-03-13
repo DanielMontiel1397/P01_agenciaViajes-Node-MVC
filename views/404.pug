@@ -1,0 +1,15 @@
+extends ./layout/index
+
+block contenido
+    main.container.mt-5.text-center
+        h1.display-4(style="font-family: 'Staatliches', cursive; font-size: 4rem;") 404
+        h2.mt-3(style="font-weight: 700;") Página no encontrada
+
+        p.mt-3(style="max-width: 600px; margin: 0 auto; font-size: 1.1rem;")
+            | Lo sentimos, la página que buscas no existe o fue movida.  
+            | Quizá te interesa volver al inicio o explorar nuestros destinos.
+
+
+        .mt-5
+            a.btn.btn-primary.btn-lg(href="/")
+                | Volver al Inicio

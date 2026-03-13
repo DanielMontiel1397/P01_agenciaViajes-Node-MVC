@@ -17,6 +17,9 @@ block contenido
                     each error in errores 
                         p(class=`py-0 alert text-center alert-danger text-uppercase col-7 mx-auto`)=error.msg
 
+                if msg  
+                    p(id="mensaje-exito" class="py-0 success text-center alert-success text-uppercase col-7 mx-auto")=msg
+
             .row.justify-content-center.col 
                 .col-md-8 
                     form(action="" method="POST") 
@@ -31,4 +34,13 @@ block contenido
                             textarea#mensaje(name="mensaje" rows="3" placeholder="Tú mensaje..." class="form-control" value=campos ? campos.mensaje : '') 
 
                         input(type="submit" class="btn btn-success btn-block")
+
+                        if msg 
+                            script.
+                                setTimeout(() => {
+                                    const mensaje = document.getElementById('mensaje-exito');
+                                    if(mensaje){
+                                        mensaje.style.display = 'none';
+                                    }
+                                }, 7000);
                         
